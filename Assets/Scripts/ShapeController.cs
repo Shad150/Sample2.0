@@ -21,6 +21,8 @@ public class ShapeController : MonoBehaviour
 
     void Update()
     {
+        
+
         if (controlActive)
         {
             //print("b");
