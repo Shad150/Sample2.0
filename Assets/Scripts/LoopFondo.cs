@@ -9,9 +9,13 @@ public class LoopFondo : MonoBehaviour
     public Canvas main;
     public Image forma;
     public Sprite[] imagenes;
+    public Vector3[] rotaciones;
     public float degress=180, maxDegrees;
     public GameObject scaler;
+    public GameObject rotator;
     int cont = 0;
+    int puntos=0;
+    public Text puntuacion;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,10 +38,12 @@ public class LoopFondo : MonoBehaviour
 
         if(scaler.transform.localScale.x <= 0.08f)
         {
-            scaler.transform.localScale = Vector3.one;
-            cont++;
-            if (cont < imagenes.Length)
+            if (rotaciones[cont]==rotator.transform.rotation.eulerAngles && cont< imagenes.Length-1)
             {
+                scaler.transform.localScale = Vector3.one;
+                cont++;
+                puntos++;
+                puntuacion.text = ""+puntos;
                 forma.sprite = imagenes[cont];
             }
             else
