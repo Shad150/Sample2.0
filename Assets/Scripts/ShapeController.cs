@@ -9,7 +9,7 @@ public class ShapeController : MonoBehaviour
     [SerializeField] private float _shakeDuration;
     [SerializeField] private float _shakeIntensity;
 
-    private bool controlActive=true, reversed;
+    public bool controlActive=true, reversed;
     public GameObject parent;
     public Transform targetDir;
     private Vector3 targetDegrees;

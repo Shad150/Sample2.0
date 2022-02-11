@@ -10,7 +10,6 @@ public class AudioRead : MonoBehaviour
     [SerializeField]
     float[] sonidosPara= new float[64];
     public Image imagen;
-    public Sprite imagenes;
     public float multi=100, sensitivity;
     // Start is called before the first frame update
     void Start()

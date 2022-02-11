@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class LoopFondo : MonoBehaviour
 {
+    private AudioManager _AM;
     public Canvas main;
     public Image forma;
     public Sprite[] imagenes;
@@ -16,15 +17,46 @@ public class LoopFondo : MonoBehaviour
     int cont = 0;
     int puntos=0;
     public Text puntuacion;
+    public Color azul;
+    public Color rojo;
+    public float scaleMult=1;
+    public GameObject ko;
+    public ShapeController controles;
     // Start is called before the first frame update
     void Start()
     {
-        
+        _AM = FindObjectOfType<AudioManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        
+        if (cont<=3)
+        {
+            forma.color = new Color(0.9490196f, 0.2352941f, 0.3529412f);
+        }else if (cont <= 7)
+        {
+            Debug.Log("wtf");
+            forma.color = azul;
+        }
+        else if (cont <= 11)
+        {
+            forma.color = azul;
+        }
+        else if (cont <= 15)
+        {
+            forma.color = new Color(0.9490196f, 0.2352941f, 0.3529412f);
+        }
+        else if (cont <= 19)
+        {
+            forma.color = new Color(0.9490196f, 0.2352941f, 0.3529412f);
+            Debug.Log("wtf");
+        }
+        else
+        {
+            forma.color = azul;
+        }
         //main.transform.Rotate(0, 0, degress*Time.deltaTime);
         //Debug.Log("1 " + Mathf.Abs(main.transform.rotation.eulerAngles.z));
         //Debug.Log("2 " + maxDegrees);
@@ -32,23 +64,30 @@ public class LoopFondo : MonoBehaviour
         {
             degress *= -1;
         }
-
-
-        scaler.transform.localScale -= new Vector3(.1f,.1f,.1f)*Time.deltaTime;
+        Debug.Log("asd"+rotator.transform.rotation.eulerAngles);
+        //scaler.transform.localScale -= Vector3.one * Time.deltaTime * ((cont + 1) * scaleMult);
+        scaler.transform.localScale -= Vector3.one*Time.deltaTime*0.3f;
 
         if(scaler.transform.localScale.x <= 0.08f)
         {
-            if (rotaciones[cont]==rotator.transform.rotation.eulerAngles && cont< imagenes.Length-1)
+            //if (Quaternion.Euler(rotaciones[cont])==rotator.transform.rotation && cont< imagenes.Length)
+            if(Quaternion.Angle(Quaternion.Euler(rotaciones[cont]), rotator.transform.rotation) <= 1)
             {
                 scaler.transform.localScale = Vector3.one;
-                cont++;
+                cont = (int)Random.RandomRange(0, rotaciones.Length);
                 puntos++;
+                _AM.Acierto();
                 puntuacion.text = ""+puntos;
                 forma.sprite = imagenes[cont];
             }
             else
             {
-                cont = 0;
+                _AM.Error();
+                ko.SetActive(true);
+                controles.controlActive = false;
+                //print("// "+Quaternion.Angle(Quaternion.Euler(rotaciones[cont]), rotator.transform.rotation));
+
+                //cont = 0;
                 //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
             
