@@ -4,12 +4,20 @@ using UnityEngine;
 
 public class ShapeController : MonoBehaviour
 {
+    private CameraShake _camShake;
+    [SerializeField] private float _shakeDuration;
+    [SerializeField] private float _shakeIntensity;
+
     private bool controlActive=true, reversed;
     public GameObject parent;
     public Transform targetDir;
     private Vector3 targetDegrees;
     [SerializeField] private float duration = 0.5f;
 
+    private void Start()
+    {
+        _camShake = FindObjectOfType<CameraShake>();
+    }
 
     void Update()
     {
@@ -23,6 +31,7 @@ public class ShapeController : MonoBehaviour
                 targetDegrees = Vector3.up * -90f;
                 targetDir.Rotate(targetDegrees, Space.World);
                 StartCoroutine(Gira());
+                StartCoroutine(_camShake.Shake(_shakeDuration, _shakeIntensity));
             }
             else if (Input.GetAxis("Horizontal") < 0)
             {
@@ -31,6 +40,7 @@ public class ShapeController : MonoBehaviour
                 targetDegrees = Vector3.up * 90f;
                 targetDir.Rotate(targetDegrees, Space.World);
                 StartCoroutine(Gira());
+                StartCoroutine(_camShake.Shake(_shakeDuration, _shakeIntensity));
             }
             else if (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(1))
             {
@@ -39,6 +49,7 @@ public class ShapeController : MonoBehaviour
                 targetDegrees = Vector3.forward * -90f;
                 targetDir.Rotate(targetDegrees, Space.World);
                 StartCoroutine(Gira());
+                StartCoroutine(_camShake.Shake(_shakeDuration, _shakeIntensity));
             }
             else if (Input.GetKeyDown(KeyCode.Q) || Input.GetMouseButtonDown(0))
             {
@@ -47,6 +58,7 @@ public class ShapeController : MonoBehaviour
                 targetDegrees = Vector3.forward * 90f;
                 targetDir.Rotate(targetDegrees, Space.World);
                 StartCoroutine(Gira());
+                StartCoroutine(_camShake.Shake(_shakeDuration, _shakeIntensity));
             }
             else if (Input.GetAxis("Vertical") > 0)
             {
@@ -55,6 +67,7 @@ public class ShapeController : MonoBehaviour
                 targetDegrees = Vector3.right * 90f;
                 targetDir.Rotate(targetDegrees, Space.World);
                 StartCoroutine(Gira());
+                StartCoroutine(_camShake.Shake(_shakeDuration, _shakeIntensity));
             }
             else if (Input.GetAxis("Vertical") < 0)
             {
@@ -63,6 +76,7 @@ public class ShapeController : MonoBehaviour
                 targetDegrees = Vector3.right * -90f;
                 targetDir.Rotate(targetDegrees, Space.World);
                 StartCoroutine(Gira());
+                StartCoroutine(_camShake.Shake(_shakeDuration, _shakeIntensity));
             }
         }
         //else

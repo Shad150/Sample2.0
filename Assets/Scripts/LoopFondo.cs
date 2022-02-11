@@ -42,7 +42,8 @@ public class LoopFondo : MonoBehaviour
             }
             else
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                cont = 0;
+                //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
             
         }
