@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ShapeController : MonoBehaviour
 {
+    private AudioManager _AM;
     private CameraShake _camShake;
     [SerializeField] private float _shakeDuration;
     [SerializeField] private float _shakeIntensity;
@@ -17,6 +18,7 @@ public class ShapeController : MonoBehaviour
     private void Start()
     {
         _camShake = FindObjectOfType<CameraShake>();
+        _AM = FindObjectOfType<AudioManager>();
     }
 
     void Update()
@@ -32,6 +34,7 @@ public class ShapeController : MonoBehaviour
                 controlActive = false;
                 targetDegrees = Vector3.up * -90f;
                 targetDir.Rotate(targetDegrees, Space.World);
+                _AM.Giro();
                 StartCoroutine(Gira());
                 StartCoroutine(_camShake.Shake(_shakeDuration, _shakeIntensity));
             }
@@ -41,6 +44,7 @@ public class ShapeController : MonoBehaviour
                 controlActive = false;
                 targetDegrees = Vector3.up * 90f;
                 targetDir.Rotate(targetDegrees, Space.World);
+                _AM.Giro();
                 StartCoroutine(Gira());
                 StartCoroutine(_camShake.Shake(_shakeDuration, _shakeIntensity));
             }
@@ -50,6 +54,7 @@ public class ShapeController : MonoBehaviour
                 controlActive = false;
                 targetDegrees = Vector3.forward * -90f;
                 targetDir.Rotate(targetDegrees, Space.World);
+                _AM.Giro();
                 StartCoroutine(Gira());
                 StartCoroutine(_camShake.Shake(_shakeDuration, _shakeIntensity));
             }
@@ -59,6 +64,7 @@ public class ShapeController : MonoBehaviour
                 controlActive = false;
                 targetDegrees = Vector3.forward * 90f;
                 targetDir.Rotate(targetDegrees, Space.World);
+                _AM.Giro();
                 StartCoroutine(Gira());
                 StartCoroutine(_camShake.Shake(_shakeDuration, _shakeIntensity));
             }
@@ -68,6 +74,7 @@ public class ShapeController : MonoBehaviour
                 controlActive = false;
                 targetDegrees = Vector3.right * 90f;
                 targetDir.Rotate(targetDegrees, Space.World);
+                _AM.Giro();
                 StartCoroutine(Gira());
                 StartCoroutine(_camShake.Shake(_shakeDuration, _shakeIntensity));
             }
@@ -77,6 +84,7 @@ public class ShapeController : MonoBehaviour
                 controlActive = false;
                 targetDegrees = Vector3.right * -90f;
                 targetDir.Rotate(targetDegrees, Space.World);
+                _AM.Giro();
                 StartCoroutine(Gira());
                 StartCoroutine(_camShake.Shake(_shakeDuration, _shakeIntensity));
             }
