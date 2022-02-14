@@ -15,7 +15,7 @@ public class AudioManager : MonoBehaviour
 
     public void Error()
     {
-        _as.PlayOneShot(_clips[0]);
+        _as.PlayOneShot(_clips[0], .5f);
     }
 
     public void Giro()

@@ -28,7 +28,8 @@ public class ShapeController : MonoBehaviour
         if (controlActive)
         {
             //print("b");
-            if (Input.GetAxis("Horizontal") > 0)
+            //if (Input.GetAxis("Horizontal") > 0)
+            if (Input.GetKeyDown(KeyCode.D))
             {
                 //StartCoroutine(Gira(parent.transform.forward * 45f));
                 controlActive = false;
@@ -38,7 +39,8 @@ public class ShapeController : MonoBehaviour
                 StartCoroutine(Gira());
                 StartCoroutine(_camShake.Shake(_shakeDuration, _shakeIntensity));
             }
-            else if (Input.GetAxis("Horizontal") < 0)
+            //else if (Input.GetAxis("Horizontal") < 0)
+            else if (Input.GetKeyDown(KeyCode.A))
             {
                 //StartCoroutine(Gira(parent.transform.forward * -45f));
                 controlActive = false;
@@ -68,7 +70,8 @@ public class ShapeController : MonoBehaviour
                 StartCoroutine(Gira());
                 StartCoroutine(_camShake.Shake(_shakeDuration, _shakeIntensity));
             }
-            else if (Input.GetAxis("Vertical") > 0)
+            //else if (Input.GetAxis("Vertical") > 0)
+            else if (Input.GetKeyDown(KeyCode.W))
             {
                 //StartCoroutine(Gira(parent.transform.right * 45f));
                 controlActive = false;
@@ -78,7 +81,8 @@ public class ShapeController : MonoBehaviour
                 StartCoroutine(Gira());
                 StartCoroutine(_camShake.Shake(_shakeDuration, _shakeIntensity));
             }
-            else if (Input.GetAxis("Vertical") < 0)
+            //else if (Input.GetAxis("Vertical") < 0)
+            else if (Input.GetKeyDown(KeyCode.S))
             {
                 //StartCoroutine(Gira(parent.transform.right * -45f));
                 controlActive = false;
@@ -133,7 +137,7 @@ public class ShapeController : MonoBehaviour
             //parent.transform.Rotate(0, -90, 0);
             //parent.transform.RotateAround(parent.transform.position, Vector3.up, -90);
             //parent.transform.rotation = Quaternion.Lerp(transform.rotation, transform.rotation * Quaternion.Euler(0, -90, 0), 0.3f);
-            yield return new WaitForSeconds(.2f);
+            yield return new WaitForSeconds(.05f);
             controlActive = true;
         }
     }

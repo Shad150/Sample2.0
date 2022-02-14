@@ -8,10 +8,13 @@ public class MainMenuController : MonoBehaviour
 {
     [SerializeField] private Button _play, _settings, _exit;
     [SerializeField] private AudioManager _AM;
+    private bool controlsOpen;
+    [SerializeField] private GameObject controlsPanel;
 
     private void Start()
     {
         _AM = FindObjectOfType<AudioManager>();
+        controlsPanel.SetActive(false);
     }
 
     public void PlayButton()
@@ -30,6 +33,22 @@ public class MainMenuController : MonoBehaviour
     {
         _AM.Boton();
         StartCoroutine(ExitButtonCR());
+    }
+
+    public void ControlsButton()
+    {
+        _AM.Boton();
+
+        if (!controlsOpen)
+        {
+            controlsPanel.SetActive(true);
+            controlsOpen = true;
+        }
+        else
+        {
+            controlsPanel.SetActive(false);
+            controlsOpen = false;
+        }
     }
 
     private IEnumerator PlayButtonCR()

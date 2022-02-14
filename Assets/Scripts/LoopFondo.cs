@@ -22,10 +22,12 @@ public class LoopFondo : MonoBehaviour
     public float scaleMult=1;
     public GameObject ko;
     public ShapeController controles;
+    private bool deadSoundPlayed;
     // Start is called before the first frame update
     void Start()
     {
         _AM = FindObjectOfType<AudioManager>();
+        deadSoundPlayed = false;
     }
 
     // Update is called once per frame
@@ -82,7 +84,11 @@ public class LoopFondo : MonoBehaviour
             }
             else
             {
-                _AM.Error();
+                if (!deadSoundPlayed)
+                {
+                    ShapeDead();
+                }
+                
                 ko.SetActive(true);
                 controles.controlActive = false;
                 //print("// "+Quaternion.Angle(Quaternion.Euler(rotaciones[cont]), rotator.transform.rotation));
@@ -92,11 +98,13 @@ public class LoopFondo : MonoBehaviour
             }
             
         }
-        //if ()
-        //{
-
-        //}
-
         
     }
+
+    private void ShapeDead()
+    {
+        _AM.Error();
+        deadSoundPlayed = true;
+    }
+
 }
